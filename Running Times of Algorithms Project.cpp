@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <random>
 #include <vector>
 
 using namespace std;
@@ -12,12 +13,32 @@ int sequentialSearch(const vector<int>& vec, int value);
 
 int main()
 {
-	//Creating the vector to search for elements
-	vector<int> myVector = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	//Initializing a vector
+	vector<int> myVector;
+
+	//Creating a random number generator (rng)
+	mt19937 rng(random_device{}());
+
+	//Setting the range of random integers for distribution
+	uniform_int_distribution<int> distributor(1, 100);
+
+	//Filling the vector with 10 random integers
+	for (int i = 0; i < 10; ++i)
+	{
+		myVector.push_back(distributor(rng));
+	}
+
+	//Printing out contents of vector
+	for (int i = 0; i < myVector.size(); ++i)
+	{
+		cout << "Index " << i << ": " << myVector[i] << endl;
+	}
+	cout << endl;
 
 	//*** RECURSIVE SEARCHES ***//
-	//Searching for PRESENT element using recursive binary search
-	int target = 7;
+	//Searching for random element using recursive binary search
+	int target = distributor(rng);
+	cout << "Random target 1: " << target << endl;
 	int result = recursiveSearch(myVector, target, 0, (myVector.size() - 1));
 
 	//Checking if element is in vector
@@ -26,29 +47,10 @@ int main()
 	else
 		cout << "Element " << target << " was not found." << endl;
 
-	//Searching for ABSENT element using recursive binary search
-	target = 11;
-	result = recursiveSearch(myVector, target, 0, (myVector.size() - 1));
-
-	//Checking if element is in vector
-	if (result != -1)
-		cout << "Element " << target << " was found at index " << result << "." << endl;
-	else
-		cout << "Element " << target << " was not found." << endl;
-
 	//***ITERATIVE SEARCHES***//
-	//Searching for PRESENT element using iterative binary search
-	target = 3;
-	result = iterativeSearch(myVector, target);
-
-	//Checking if element is in vector
-	if (result != -1)
-		cout << "Element " << target << " was found at index " << result << "." << endl;
-	else
-		cout << "Element " << target << " was not found." << endl;
-
-	//Searching for ABSENT element using iterative binary search
-	target = 23;
+	//Searching for random element using iterative binary search
+	target = distributor(rng);
+	cout << "Random target 2: " << target << endl;
 	result = iterativeSearch(myVector, target);
 
 	//Checking if element is in vector
@@ -58,18 +60,9 @@ int main()
 		cout << "Element " << target << " was not found." << endl;
 
 	//***SEQUENTIAL SEARCHES***//
-	//Searching for PRESENT element using sequential search
-	target = 9;
-	result = sequentialSearch(myVector, target);
-
-	//Checking if element is in vector
-	if (result != -1)
-		cout << "Element " << target << " was found at index " << result << "." << endl;
-	else
-		cout << "Element " << target << " was not found." << endl;
-
-	//Searching for ABSENT element using sequential search
-	target = -13;
+	//Searching for random element using sequential search
+	target = distributor(rng);
+	cout << "Random target 3: " << target << endl;
 	result = sequentialSearch(myVector, target);
 
 	//Checking if element is in vector
@@ -124,6 +117,8 @@ int sequentialSearch(const vector<int>& vec, int value)
 	}
 	return -1;
 }
+
+
 
 	
 		
