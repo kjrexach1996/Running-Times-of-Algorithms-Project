@@ -28,7 +28,17 @@ int main()
 		myVector.push_back(distributor(rng));
 	}
 
-	//Printing out contents of vector
+	//Printing out contents of vector BEFORE sorting
+	for (int i = 0; i < myVector.size(); ++i)
+	{
+		cout << "Index " << i << ": " << myVector[i] << endl;
+	}
+	cout << endl;
+
+	//Sort the elements of the vector in ascending order
+	sort(myVector.begin(), myVector.end());
+
+	//Printing out contents of vector AFTER sorting
 	for (int i = 0; i < myVector.size(); ++i)
 	{
 		cout << "Index " << i << ": " << myVector[i] << endl;
