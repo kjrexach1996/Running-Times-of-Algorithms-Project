@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <algorithm>
 #include <random>
 #include <vector>
 
