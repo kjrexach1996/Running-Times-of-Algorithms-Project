@@ -17,7 +17,7 @@ int main()
 {
 	//Variable declarations representing size of vector N and 
 	//average times for each type of search
-	int N = 1000000;
+	int N = 5000;
 	int sumRBS = 0;
 	int sumIBS = 0;
 	int sumSeqS = 0;
@@ -105,9 +105,9 @@ int main()
 
 		cout << "sumSeqS: " << sumSeqS << endl << endl;
 	}
-	cout << "Average running time for recursive binary search: " << sumRBS / 10 << endl;
-	cout << "Average running time for iterative binary search: " << sumIBS / 10 << endl;
-	cout << "Average running time for sequential search: " << sumSeqS / 10 << endl;
+	cout << "Average running time for recursive binary search: " << sumRBS / 10 << " nanoseconds" << endl;
+	cout << "Average running time for iterative binary search: " << sumIBS / 10 << " nanoseconds" << endl;
+	cout << "Average running time for sequential search: " << sumSeqS / 10 << " nanoseconds" << endl;
 }
 
 int recursiveSearch(const vector<int>& vec, int value, int low, int high)
