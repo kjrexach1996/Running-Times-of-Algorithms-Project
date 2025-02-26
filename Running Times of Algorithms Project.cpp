@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <algorithm>
 #include <vector>
 
 using namespace std;
@@ -13,7 +14,10 @@ int sequentialSearch(const vector<int>& vec, int value);
 int main()
 {
 	//Creating the vector to search for elements
-	vector<int> myVector = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	vector<int> myVector = { 5, 9, 7, 4, 8, 3, 1, 2, 6, 10 };
+
+	//Sort the elements of the vector in ascending order
+	sort(myVector.begin(), myVector.end());
 
 	//*** RECURSIVE SEARCHES ***//
 	//Searching for PRESENT element using recursive binary search
