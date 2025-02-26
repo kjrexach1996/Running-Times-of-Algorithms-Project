@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <random>
+#include <algorithm>
 #include <vector>
 
 using namespace std;
@@ -13,6 +14,13 @@ int sequentialSearch(const vector<int>& vec, int value);
 
 int main()
 {
+	//Variable declarations representing size of vector N and 
+	//average times for each type of search
+	int N = 100;
+	int sumRBS = 0;
+	int sumIBS = 0;
+	int sumSeqS = 0;
+
 	//Initializing a vector
 	vector<int> myVector;
 
@@ -20,56 +28,21 @@ int main()
 	mt19937 rng(random_device{}());
 
 	//Setting the range of random integers for distribution
-	uniform_int_distribution<int> distributor(1, 100);
+	uniform_int_distribution<int> distributor(1, N);
 
-	//Filling the vector with 10 random integers
+	//Loop runs 10 times
 	for (int i = 0; i < 10; ++i)
 	{
-		myVector.push_back(distributor(rng));
+		//Fills the vector with N random integers ranging from 1 to N
+		for (int j = 0; j < N; ++j)
+		{
+			myVector.push_back(distributor(rng));
+		}
+		sort(myVector.begin(), myVector.end());
+		
 	}
 
-	//Printing out contents of vector
-	for (int i = 0; i < myVector.size(); ++i)
-	{
-		cout << "Index " << i << ": " << myVector[i] << endl;
-	}
-	cout << endl;
-
-	//*** RECURSIVE SEARCHES ***//
-	//Searching for random element using recursive binary search
-	int target = distributor(rng);
-	cout << "Random target 1: " << target << endl;
-	int result = recursiveSearch(myVector, target, 0, (myVector.size() - 1));
-
-	//Checking if element is in vector
-	if (result != -1)
-		cout << "Element " << target << " was found at index " << result << "." << endl;
-	else
-		cout << "Element " << target << " was not found." << endl;
-
-	//***ITERATIVE SEARCHES***//
-	//Searching for random element using iterative binary search
-	target = distributor(rng);
-	cout << "Random target 2: " << target << endl;
-	result = iterativeSearch(myVector, target);
-
-	//Checking if element is in vector
-	if (result != -1)
-		cout << "Element " << target << " was found at index " << result << "." << endl;
-	else
-		cout << "Element " << target << " was not found." << endl;
-
-	//***SEQUENTIAL SEARCHES***//
-	//Searching for random element using sequential search
-	target = distributor(rng);
-	cout << "Random target 3: " << target << endl;
-	result = sequentialSearch(myVector, target);
-
-	//Checking if element is in vector
-	if (result != -1)
-		cout << "Element " << target << " was found at index " << result << "." << endl;
-	else
-		cout << "Element " << target << " was not found." << endl;
+	
 }
 
 int recursiveSearch(const vector<int>& vec, int value, int low, int high)
