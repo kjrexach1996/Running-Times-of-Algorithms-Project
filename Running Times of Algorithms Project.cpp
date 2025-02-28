@@ -2,6 +2,7 @@
 // three search algorithms from Parts 1 and 2 and uses them find a random target value
 // in a vector filled with a larger and larger set of random integers. The running times 
 // of each algorithm are recorded to compare each algorithms' rate of growth.
+// Times will be recorded in nanoseconds.
 
 #include <iostream>
 #include <random>
@@ -32,7 +33,7 @@ int main()
 {
 	//Variable declarations representing size of vector N and 
 	//average times for each type of search
-	int n = 5000;
+	int n = 1000000;
 	int sumRBS = 0;
 	int sumIBS = 0;
 	int sumSeqS = 0;
